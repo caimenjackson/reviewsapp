@@ -1,4 +1,7 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="![logo](https://github.com/caimenjackson/reviewsapp/assets/73300686/12299752-fe84-4f16-89b3-4afa4bbf38d0)" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+    ![logo](https://github.com/caimenjackson/reviewsapp/assets/73300686/b6447c7a-3cf8-429f-982b-761465965203)
+
+</p>
 
 <p align="center">
 
