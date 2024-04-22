@@ -23,7 +23,7 @@ class PlacesTableSeeder extends Seeder
                 'address' => $row[3] ?: null,
                 'hours' => $row[4] ?: null,
                 'phone' => $row[5] ?: null,
-                'closed' => $row[6] === 'true' ? 1 : 0,
+                'closed' => strtolower($row[6]) === 'true' ? 1 : 0,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

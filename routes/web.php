@@ -22,8 +22,17 @@ Route::post('/reviews/frequent', [ReviewController::class, 'showFrequentPhrases'
 
 Route::get('/reviews/profiles', [ReviewController::class, 'showProfiles'])->name('reviews.profiles');
 
-Route::get('/reviews/places', [ReviewController::class, 'showPlaces'])->name('reviews.places');
+Route::get('/reviews/places', [ReviewController::class, 'indexPlaces'])->name('reviews.places');
 
+Route::get('/reviews/by-job', [ReviewController::class, 'indexByJob'])->name('reviews.by_job');
+
+Route::get('/reviews/stats', [ReviewController::class, 'placeStats'])->name('reviews.stats');
+
+Route::get('/reviews/category-averages', [ReviewController::class, 'categoryAverages'])->name('reviews.category_averages');
+
+Route::get('/reviews/top-categories', [ReviewController::class, 'topCategories'])->name('reviews.top_categories');
+
+Route::get('/reviews/most-reviewed-place', [ReviewController::class, 'mostReviewedPlace'])->name('reviews.most_reviewed_place');
 
 
 

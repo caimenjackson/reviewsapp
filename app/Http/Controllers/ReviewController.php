@@ -6,6 +6,10 @@ use App\Models\Review;
 use App\Models\Reviewer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\Place;
+
 
 class ReviewController extends Controller
 {
@@ -118,5 +122,79 @@ class ReviewController extends Controller
         return view('reviews.places');
     }
 
+
+    public function indexPlaces(Request $request)
+{
+    // Fetch places with the count of reviews, filtering to include only those with 4 or more reviews
+    $places = Place::withCount('reviews')
+                   ->having('reviews_count', '>=', 4) // Filter places with 4 or more reviews
+                   ->orderBy('reviews_count', 'desc') // Optional: order by the number of reviews
+                   ->paginate(20); // Paginate the results for display
+
+    return view('reviews.places', compact('places'));
+}
+
+
+public function indexByJob(Request $request)
+    {
+        // Fetch all unique job titles for the dropdown
+        $jobs = Reviewer::select('jobs')->distinct()->pluck('jobs');
+
+        $selectedJob = $request->input('job');
+
+        // Fetch reviews where reviewers have the selected job title
+        if ($selectedJob) {
+            $reviews = Review::whereHas('reviewer', function ($query) use ($selectedJob) {
+                $query->where('jobs', $selectedJob); // Use 'jobs' instead of 'job'
+            })->paginate(20);
+        } else {
+            $reviews = collect(); // Return an empty collection if no job is selected
+        }
+
+        return view('reviews.by_job', compact('reviews', 'jobs', 'selectedJob'));
+    }
+
+    public function placeStats()
+    {
+        $totalClosed = Place::where('closed', 1)->count();
+        $totalOpen = Place::where('closed', 0)->count();
+
+        return view('reviews.stats', compact('totalOpen', 'totalClosed'));
+    }
+
+    public function categoryAverages()
+{
+    // Calculate the average rating for each category and paginate the results
+    $categoryAverages = Review::select('categories', DB::raw('AVG(rating) as average_rating'))
+                              ->groupBy('categories')
+                              ->orderBy('average_rating', 'desc')
+                              ->paginate(20);  // Adjust the pagination size as needed
+
+    return view('reviews.category_averages', compact('categoryAverages'));
+}
+
+
+public function topCategories()
+{
+    $topCategories = Review::select('categories', DB::raw('AVG(rating) as average_rating'))
+                           ->groupBy('categories')
+                           ->orderBy('average_rating', 'desc')
+                           ->take(5)
+                           ->get();
+
+    return view('reviews.top_categories', compact('topCategories'));
+}
+
+
+public function mostReviewedPlace()
+    {
+        $mostReviewedPlace = Review::select('reviews.gPlusPlaceId', DB::raw('count(*) as review_count'), 'places.name')
+                                   ->join('places', 'reviews.gPlusPlaceId', '=', 'places.gPlusPlaceId')
+                                   ->groupBy('reviews.gPlusPlaceId', 'places.name')
+                                   ->orderBy('review_count', 'desc')
+                                   ->first();
+
+        return view('reviews.most_reviewed_place', compact('mostReviewedPlace'));
+    }
 
 }

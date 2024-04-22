@@ -145,18 +145,18 @@
                 <a href="/reviews/places" class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Find locations with 4+ reviews
                 </a>
-                <button class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
+                <a href="/reviews/by-job" class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Select Reviews by job
-                </button>
-                <button class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
+                </a>
+                <a href="/reviews/stats" class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Calculate open/closed locations
-                </button>
-                <button class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
+                </a>
+                <a href="/reviews/category-averages" class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Calculate average category rating
-                </button>
-                <button class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
+                </a>
+                <a href="reviews/top-categories" class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Find top 5 categories
-                </button>
+                </a>
                 <button class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Highest Reviewed location
                 </button>
