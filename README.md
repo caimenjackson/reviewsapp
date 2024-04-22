@@ -1,7 +1,6 @@
-<p align="center">
-    ![logo](https://github.com/caimenjackson/reviewsapp/assets/73300686/b6447c7a-3cf8-429f-982b-761465965203)
 
-</p>
+![logo](https://github.com/caimenjackson/reviewsapp/assets/73300686/b6447c7a-3cf8-429f-982b-761465965203)
+
 
 <p align="center">
 
