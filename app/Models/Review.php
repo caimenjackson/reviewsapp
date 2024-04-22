@@ -18,4 +18,11 @@ class Review extends Model
     {
         return $this->belongsTo(Place::class, 'gPlusPlaceId', 'gPlusPlaceId');
     }
+
+
+    protected $table = 'reviews'; // Specify if different from the class name in plural
+
+    protected $casts = [
+        'reviewTime' => 'datetime', // Ensure dates are treated as date instances
+    ];
 }

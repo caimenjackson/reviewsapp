@@ -81,7 +81,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/predictive" class="hover:bg-yellow-500 hover:text-black relative inline-flex items-center bg-white-900 text-black rounded px-2 py-1">
+                    <a href="/reviews" class="hover:bg-yellow-500 hover:text-black relative inline-flex items-center bg-white-900 text-black rounded px-2 py-1">
                         <i class="fa-solid fa-globe"></i>
                         <span class="ml-2">Database</span>
                         {{-- <span class="rounded-full bg-red-500 text-white px-2 py-1 ml-2 text-xs">BETA</span> --}}
@@ -116,7 +116,7 @@
 
     </div>
 </footer>
-<x-flash-message />
+<x-notification />
 </body>
 
 </html>

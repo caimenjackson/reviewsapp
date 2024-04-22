@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('places', function (Blueprint $table) {
-            $table->string('gPlusPlaceId')->primary();
+            $table->string('gPlusPlaceId', 255)->primary();
             $table->string('name');
             $table->string('price')->nullable();
             $table->text('address')->nullable();

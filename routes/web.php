@@ -3,28 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\CarController;
-use App\Http\Controllers\PredictiveController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReviewController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/test', function() {
-//     return view('test');
-// });
-
-// Route::get('/index', function() {
-//     return view('index');
-// });
 
 // ######################## INDEX #############################
 
@@ -35,55 +16,27 @@ Route::get('/', function () {
 
 // ######################## INDEX #############################
 
+Route::get('/reviews/frequent', [ReviewController::class, 'frequent'])->name('reviews.frequent');
 
+Route::post('/reviews/frequent', [ReviewController::class, 'showFrequentPhrases'])->name('frequent_words');
 
-// ######################## AI #############################
+Route::get('/reviews/profiles', [ReviewController::class, 'showProfiles'])->name('reviews.profiles');
 
-// Route::get('/predictive', function() {
-//     $userCars = auth()->user()->cars()->get();
-//     return view('predictive.index', ['userCars' => $userCars]);
-// });
-
-// Route::get('/predictive', [CarController::class, 'getUserCars']);
-
-Route::get('/predictive', function () {
-    return view('predictive.index');
-});
-// //view single car
-
-// Route for authenticated users
-// Route::middleware(['auth'])->get('/predictive', [CarController::class, 'getUserCars']);
-
-
-// Route for unauthenticated users
-// Route::middleware(['guest'])->get('/predictive', function () {
-//     return view('predictive.unauthenticated');
-// });
+Route::get('/reviews/places', [ReviewController::class, 'showPlaces'])->name('reviews.places');
 
 
 
-// ######################## END AI #############################
+
+// List reviews
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+
+
+// Show review details
+Route::get('/reviews/{id}', [ReviewController::class, 'show'])->name('reviews.show');
 
 
 
-// ######################## CAR DETAILS #############################
 
-//show Car Add Form
-Route::get('/cars/add', [CarController::class, 'add'])->middleware('auth');
-//Add new car POST Request
-Route::post('/cars', [CarController::class, 'store']);
-//Update Car details
-Route::put('/cars/{car}', [CarController::class, 'update'])->middleware('auth');
-//Show Car Update Form
-Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->middleware('auth');
-//Delete car from database
-Route::delete('/cars/{car}/delete', [CarController::class, 'destroy'])->middleware('auth');
-//View All Cars
-Route::get('/cars', [CarController::class, 'viewCars'])->middleware('auth');
-//view single car
-Route::get('cars/{car}', [CarController::class, 'show']);
-
-// ######################## END CARS #############################
 
 
 
@@ -94,9 +47,11 @@ Route::get('/termsandconditions', function () {
     return view('pages.tcs');
 });
 
-Route::post('/predictive', [PredictiveController::class, 'analyse']);
 
 // ######################## END HTML #############################
+
+
+
 
 
 
@@ -130,6 +85,12 @@ Route::get('/account', function () {
 
 
 
+
+
+
+
+
+
 // ######################## COOKIES #############################
 
 
@@ -151,18 +112,8 @@ Route::get('/decline-cookies', function (Request $request) {
 
 
 
-// ######################## ARTIFICIAL WARNING #############################
+// ########################  WARNING #############################
 
-
-// Route::post('/accept-warning', function () {
-//     Session::put('ai_warning_accepted', true);
-//     return redirect()->back();
-// });
-
-// Route::get('/decline-warning', function () {
-//     Session::forget('ai_warning_accepted');
-//     return redirect()->back();
-// });
 
 
 Route::middleware(['web'])->group(function () {
@@ -176,27 +127,5 @@ Route::middleware(['web'])->group(function () {
         return view('index');
     })->name('decline.warning');
 });
-
-
-
-Route::middleware(['auth'])->get('/user-cars', [CarController::class, 'getUserCars'])->name('user.cars');
-
-
-
-//cookie programming
-// Route::post('/accept-cookies', function (Request $request) {
-//     // Store a session variable to indicate cookie consent
-//     session(['cookie_consent' => true]);
-//     // Debug: Inspect session data
-//     // dd(session('cookie_consent'));
-//     return redirect()->back();
-// });
-// // Optionally handle cookie removal
-// Route::get('/decline-cookies', function (Request $request) {
-//     // Optionally, remove any existing cookies
-//     session()->forget('cookie_consent');
-
-//     return redirect()->back();
-// });
 
 // ######################## END COOKIES ###########################

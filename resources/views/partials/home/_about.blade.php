@@ -6,7 +6,7 @@
         <p class="text-lg mb-4 text-black">Discover exactly how your offerings resonate with customers. Input a specific rating, like 5.0, and our software will immediately compute and display the number of reviews with that exact rating. For instance, entering a rating of 5.0 could reveal that 13,306 reviews share this top score, providing you with instant insights into customer satisfaction levels.</p>
     </div>
     <div class="w-full md:w-1/2 flex" style="height: 33vh;">
-        <img src="{{asset('images/review_filter.png')}}" alt="Descriptive Alt Text" style="height: 100%; width: 100%; object-fit: cover;">
+        <img src="{{asset('images/review_filter.jpg')}}" alt="Descriptive Alt Text" style="height: 100%; width: 100%; object-fit: cover;">
     </div>
 </section>
 
@@ -53,7 +53,7 @@
         <p class="text-lg mb-4 text-black">Identify which places attract more attention by retrieving all locations with more than three reviews. This feature helps in pinpointing popular spots, allowing for focused analytical efforts and resource allocation to enhance customer experiences where it counts the most.</p>
     </div>
     <div class="w-full md:w-1/2 flex" style="height: 33vh;">
-        <img src="{{asset('images/review_filter.png')}}" alt="Descriptive Alt Text" style="height: 100%; width: 100%; object-fit: cover;">
+        <img src="{{asset('images/review_filter_4.jpg')}}" alt="Descriptive Alt Text" style="height: 100%; width: 100%; object-fit: cover;">
     </div>
 </section>
 
@@ -61,7 +61,7 @@
 
 <section class="w-full flex flex-wrap">
     <div class="w-full md:w-1/2 flex" style="height: 33vh;">
-        <img src="{{asset('images/review_filter.png')}}" alt="Descriptive Alt Text" style="height: 100%; width: 100%; object-fit: cover;">
+        <img src="{{asset('images/review_filter_5.jpg')}}" alt="Descriptive Alt Text" style="height: 100%; width: 100%; object-fit: cover;">
     </div>
     <div class="w-full md:w-1/2 p-8">
         <h2 class="text-3xl font-bold mb-4 text-black">Specialized Review Retrieval</h2>

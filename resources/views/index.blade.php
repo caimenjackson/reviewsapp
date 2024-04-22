@@ -1,7 +1,7 @@
 <x-layout>
 
     
-<x-ai-warning />
+<x-warning />
 @include('partials._hero')
 
 @include('partials.home._about')
