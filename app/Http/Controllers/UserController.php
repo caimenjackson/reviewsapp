@@ -8,30 +8,30 @@ use Illuminate\Foundation\Auth\User;
 
 class UserController extends Controller
 {
-    //Display the register form
+    
     public function create() {
         return view('users.register');
     }
 
-     //store new users
+     
     public function store(Request $request) {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => 'required|confirmed|min:6',
-            'address' => ['required', 'string', 'max:255'], // address is not nullable
-            'date_of_birth' => ['required', 'date'], // date_of_birth is not nullable
+            'address' => ['required', 'string', 'max:255'], 
+            'date_of_birth' => ['required', 'date'], 
             'user_type' => ['required', Rule::in(['consumer', 'business'])],
-            'business_name' => ['nullable', 'string', 'max:255'], // business_name is nullable
+            'business_name' => ['nullable', 'string', 'max:255'], 
         ]);
 
-        //Hash Password
+        
         $formFields['password'] = bcrypt($formFields['password']);
 
-        //create user
+        
         $user = User::create($formFields);
 
-        //login
+        
         auth()->login($user);
         $request->session()->forget('warning_accepted');
         return redirect('/')->with('message', 'User created and logged in');
@@ -40,10 +40,10 @@ class UserController extends Controller
 
 
     public function update(Request $request, User $user) {
-        // dd($listing->description);
-        // dd($request->file('logo')); allows to show the uploaded file data
+        
+        
     
-        //Make sure logged in user is owner
+        
         if($user->id != auth()->id()) {
             abort(403, 'Unauthorised Action');
         }
@@ -52,10 +52,10 @@ class UserController extends Controller
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)
             ],
-            'address' => ['required', 'string', 'max:255'], // address is not nullable
-            'date_of_birth' => ['required', 'date'], // date_of_birth is not nullable
+            'address' => ['required', 'string', 'max:255'], 
+            'date_of_birth' => ['required', 'date'], 
             'user_type' => ['required', Rule::in(['consumer', 'business'])],
-            'business_name' => ['nullable', 'string', 'max:255'], // business_name is nullable
+            'business_name' => ['nullable', 'string', 'max:255'], 
         ]);
 
         $user->update($formFields);
@@ -77,7 +77,7 @@ class UserController extends Controller
 
         $request->session()->forget('login');
         $request->session()->forget('warning_accepted');
-        // $request->session()->invalidate();
+        
 
         $request->session()->regenerateToken();
 
@@ -85,7 +85,7 @@ class UserController extends Controller
     }
 
 
-    //show login form
+    
     public function login() {
         return view('users.login');
     }
@@ -109,9 +109,9 @@ class UserController extends Controller
 
 
 
-    //Delete User Account
+    
     public function destroy(User $user) {
-        //Make sure logged in user is owner
+        
         if($user->id != auth()->id()) {
             abort(403, 'Unauthorised Action');
         }
@@ -120,10 +120,10 @@ class UserController extends Controller
         return redirect('/')->with('message', 'You are now logged out. Account deleted successfully. ');
 } 
 
-    //edit a user
+    
     public function edit(User $user) {
-        // dd($listing->title);
-        // dd($listing->description);
+        
+        
         if($user->id != auth()->id()) {
             return redirect('/')->with('message', 'Unauthorised Action 403');
         }

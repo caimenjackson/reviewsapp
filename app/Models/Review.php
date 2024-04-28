@@ -20,9 +20,9 @@ class Review extends Model
     }
 
 
-    protected $table = 'reviews'; // Specify if different from the class name in plural
+    protected $table = 'reviews'; 
 
     protected $casts = [
-        'reviewTime' => 'datetime', // Ensure dates are treated as date instances
+        'reviewTime' => 'datetime', 
     ];
 }

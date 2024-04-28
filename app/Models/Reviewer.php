@@ -9,7 +9,7 @@ class Reviewer extends Model
 {
     protected $table = 'reviewers';
     protected $primaryKey = 'gPlusUserId';
-    public $incrementing = false; // Important if the primary key is not an auto-incrementing integer
+    public $incrementing = false; 
 
     protected $fillable = ['gPlusUserId', 'userName', 'jobs', 'currentPlace', 'previousPlace', 'education'];
 

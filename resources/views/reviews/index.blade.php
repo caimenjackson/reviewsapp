@@ -1,35 +1,10 @@
-{{-- <x-layout>
-    @include('partials._databaseheader')
-
-<div class="container text-black">
-    <table class="table table-hover">
-
-        @foreach ($reviews as $review)
-
-<tr onclick="window.location.href = '{{ route('reviews.show', $review->id) }}';" style="cursor: pointer;">
-    <td>{{ $review->place ? $review->place->name : 'No associated place' }}</td>
-    <td>{{ $review->rating }}</td>
-    <td>{{ $review->reviewerName }}</td>
-    <td>{{ Str::limit($review->reviewText, 50) }}</td>
-    <td>{{ $review->categories }}</td>
-</tr>
-
-@endforeach
-    </table>
-    {{ $reviews->links() }}
-</div>
-
-
-</x-layout> --}}
 
 
 <x-layout>
     @include('partials._databaseheader')
-    <div class="flex mx-auto mt-5" style="width: 96%;"> <!-- Setting total width to 96% to allow for 2% padding on each side -->
-        <!-- Spacer for 2% gap on the left -->
+    <div class="flex mx-auto mt-5" style="width: 96%;"> 
         <div style="width: 2%;"></div>
     
-        <!-- Table Section - 80% Width -->
         <div class="w-4/5">
             <h1 class="text-center mb-4 text-black"></h1>
             <table class="w-full text-left table-auto shadow-lg bg-white">
@@ -64,10 +39,8 @@
             
         </div>
     
-        <!-- Spacer for 2% gap between table and dropdown/buttons -->
         <div style="width: 2%;"></div>
     
-        <!-- Dropdown and Buttons Section - 15% Width -->
         <div class="w-3/20 flex flex-col space-y-4 padding-top-10">
             <p class="text-sm text-gray-700 font-bold">
                 Showing {{ $reviews->firstItem() }} to {{ $reviews->lastItem() }} of {{ $reviews->total() }} records
@@ -82,7 +55,6 @@
                 <option>Sort by Oldest First</option>
             </select>
             <div class="flex flex-col space-y-2">
-                <!-- List buttons here -->
                 <div class="space-y-0">
                 <div class="bg-slate-900 text-white font-bold py-1 px-6 w-full hover:bg-yellow-500 my-0 text-center">
                     Select Rating
@@ -91,7 +63,6 @@
 
 
                 <form action="{{ route('reviews.index') }}" method="GET" class="flex flex-row">
-                    {{-- Retain price if it's already set --}}
                     @if(request()->has('price'))
                         <input type="hidden" name="price" value="{{ request('price') }}">
                     @endif
@@ -116,7 +87,6 @@
 
 
                     <form action="{{ route('reviews.index') }}" method="GET" class="flex flex-row">
-                        {{-- Retain rating if it's already set --}}
                         @if(request()->has('rating'))
                             <input type="hidden" name="rating" value="{{ request('rating') }}">
                         @endif
@@ -157,18 +127,15 @@
                 <a href="reviews/top-categories" class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Find top 5 categories
                 </a>
-                <button class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
+                <a href="reviews/most-reviewed-place" class="bg-slate-900 text-white font-bold py-3 px-6 rounded w-full hover:bg-yellow-500">
                     Highest Reviewed location
-                </button>
+                </a>
                 <a href="/reviews" class="text-center bg-red-500 text-white font-bold py-6 px-6 rounded w-full hover:bg-yellow-500">
                     <i class="fa-solid fa-times-circle"></i>
                     Clear Filters
                 </a>
-                <!-- More buttons -->
             </div>
         </div>
-    
-        <!-- Spacer for 2% gap on the right -->
         <div style="width: 2%;"></div>
     </div>
     

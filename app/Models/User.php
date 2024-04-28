@@ -11,12 +11,6 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
 
-        //relationship to cars
-        public function cars() {
-            return $this->hasMany(Car::class, 'user_id');
-        }
-
-        
     use HasApiTokens, HasFactory, Notifiable;
 
 
